@@ -15,9 +15,38 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choice your hero" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hut-Ml-ikt">
+                                <rect key="frame" x="16" y="60" width="382" height="33"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="33" id="Oft-98-N2E"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="27"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="naruto" translatesAutoresizingMaskIntoConstraints="NO" id="XXP-MS-KpJ">
+                                <rect key="frame" x="16" y="101" width="382" height="500"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="500" id="8if-eD-rmI"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="hut-Ml-ikt" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="GEg-ie-NIl"/>
+                            <constraint firstItem="hut-Ml-ikt" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="16" id="Ioa-HX-Ut7"/>
+                            <constraint firstItem="XXP-MS-KpJ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="L4B-cU-Y5E"/>
+                            <constraint firstItem="XXP-MS-KpJ" firstAttribute="top" secondItem="hut-Ml-ikt" secondAttribute="bottom" constant="8" id="Sbo-Ia-7eQ"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="hut-Ml-ikt" secondAttribute="trailing" constant="16" id="hOa-9s-gQR"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="XXP-MS-KpJ" secondAttribute="trailing" constant="16" id="wYb-83-WM1"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="heroImageView" destination="XXP-MS-KpJ" id="Fzj-Wd-q68"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -25,6 +54,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="naruto" width="410" height="687.5"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

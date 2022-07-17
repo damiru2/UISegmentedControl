@@ -8,44 +8,58 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
+    
+    @IBOutlet weak var heroImageView: UIImageView!
     var segmentedControl: UISegmentedControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let titles = ["one", "two", "three"]
-        segmentedControl = UISegmentedControl(items: titles)
+        let heroes = ["naruto", "sasuke", "itachi", "madara", "obito"]
+        segmentedControl = UISegmentedControl(items: heroes)
         
-        segmentedControl.insertSegment(withTitle: "four", at: 3, animated: true)
+        heroImageView.contentMode = .scaleAspectFill
         
-        segmentedControl.setTitle("two2", forSegmentAt: 1)
-        
-        segmentedControl.setImage(UIImage(systemName: "circle"), forSegmentAt: 0)
+        segmentedControl.setTitleTextAttributes([NSAttributedString.Key.font : UIFont(name: "Arial", size: 15)!,
+                                                 NSAttributedString.Key.foregroundColor: UIColor.lightGray], for: .normal)
+        segmentedControl.setTitleTextAttributes([NSAttributedString.Key.font : UIFont(name: "Arial", size: 18)!,
+                                                 NSAttributedString.Key.foregroundColor: UIColor.purple], for: .selected)
+        segmentedControl.addTarget(self, action: #selector(segmentedAction(sender:)), for: .valueChanged)
         segmentedControl.selectedSegmentIndex = 0
-        segmentedControl.selectedSegmentTintColor = UIColor.red
-//         segmentedControl.setWidth(150, forSegmentAt: 2)
-        
-        segmentedControl.setTitle("so long title text", forSegmentAt: 2)
-        segmentedControl.apportionsSegmentWidthsByContent = true
-        segmentedControl.addTarget(self, action: #selector(segmentAction), for: .valueChanged)
-        
-        
         
         view.addSubview(segmentedControl)
-        
         segmentedControl.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([segmentedControl.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-                                     segmentedControl.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-                                     segmentedControl.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16)])
-        
+        NSLayoutConstraint.activate([
+            segmentedControl.topAnchor.constraint(equalTo: heroImageView.bottomAnchor, constant: 55),
+            segmentedControl.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            segmentedControl.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            segmentedControl.heightAnchor.constraint(equalToConstant: 48)])
         
     }
     
-    @objc func segmentAction(sender: UISegmentedControl) {
-        print(sender.titleForSegment(at: sender.selectedSegmentIndex))
+    @objc func segmentedAction(sender: UISegmentedControl) {
+        switch sender.selectedSegmentIndex {
+        case 0: changeHero(for: "naruto")
+        case 1: changeHero(for: "sasuke")
+        case 2: changeHero(for: "itachi")
+        case 3: changeHero(for: "madara")
+        case 4: changeHero(for: "obito")
+        default: break
+        }
     }
+    
+    func changeHero(for index: String) {
+        UIView.animate(withDuration: 0.5) {
+            self.heroImageView.alpha = 0
+        } completion: { _ in
+            UIView.animate(withDuration: 0.5) {
+                self.heroImageView.alpha = 1
+                self.heroImageView.image = UIImage(named: "\(index)")!
+        }
 
-
+        }
+    }
+    
 }
 
